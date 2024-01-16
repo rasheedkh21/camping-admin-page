@@ -13,23 +13,31 @@ import Stack from "@mui/joy/Stack";
 import Typography from "@mui/joy/Typography";
 import { Input } from "@mui/joy";
 import Snackbar from "@mui/joy/Snackbar";
+import Popup from "reactjs-popup";
 
-const BASEURL = "http://localhost:5050/api/v1";
+const BASEURL = "http://localhost:5050/api/v1/";
 
 export default function Motors() {
   const [allData, setAllData] = React.useState([]);
   const [open, setOpen] = React.useState(false);
+  const [editOpen, setEditOpen] = React.useState(false);
   const [name, setName] = React.useState("");
   const [company, setCompany] = React.useState("");
   const [cost, setCost] = React.useState("");
   const [licence, setLicence] = React.useState("");
+  const [people, setPeople] = React.useState("");
+  const [location, setLocation] = React.useState("");
+  const [filteredData, setFilteredData] = React.useState("");
+  const [search, setSearch] = React.useState("");
 
+  //To get ALL DATA from Server
   React.useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`${BASEURL}/motors/getAllMotors`);
-        const data = await response.json();
-        setAllData(data.data);
+        const response = await fetch(`${BASEURL}motors/getAllMotors`);
+        const motors = await response.json();
+        setAllData(motors.data);
+        setFilteredData(motors.data);
       } catch (error) {
         console.log("Motor data is not found", error);
       }
@@ -38,9 +46,9 @@ export default function Motors() {
   }, []);
 
   //ADD
-  const handleClick = async () => {
+  const handleAddClick = async () => {
     try {
-      const response = await fetch(`${BASEURL}/motors/addNewMotor`, {
+      const response = await fetch(`${BASEURL}motors/addNewMotor`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -50,32 +58,79 @@ export default function Motors() {
           company: company,
           cost: cost,
           licence: licence,
+          people: people,
+          location: location,
         }),
       });
+      await response.json();
       if (response.ok) {
         setOpen(false);
       }
     } catch (error) {
-      console.log("New motor data is not defined", error);
+      console.log("Add motor data is wrong:", error);
     }
   };
+
   //DELETE
   const handleDelete = async (id) => {
     try {
-      const response = await fetch(`${BASEURL}/motors/${id}`, {
+      const response = await fetch(`${BASEURL}motors/${id}`, {
         method: "DELETE",
       });
-      console.log(response);
       if (response.ok) {
-        console.log(response);
-        // setOpen(true);
-        // fetchData();
+        fetchData();
       }
     } catch (error) {
       console.log("Error deleting motor data", error);
     }
   };
   console.log("data:", allData);
+
+  //TO SEARCH DATA
+  const handleSearch = (query) => {
+    setSearch(query);
+    const filtered = allData.filter(
+      (data) =>
+        data.name.toLowerCase().includes(query.toLowerCase()) ||
+        data.company.toLowerCase().includes(query.toLowerCase())
+    );
+    setFilteredData(filtered);
+  };
+  // const filteredSearch = searchFilter;
+  console.log("filter", filteredData);
+
+  //TO ADD added date
+  const formatDate = (createdAt) => {
+    const data = new Date(createdAt);
+    return data.toISOString().split("T")[0];
+  };
+  console.log(formatDate);
+
+  //To Update information
+  const handleUpdateClick = async (_id) => {
+    try {
+      const response = await fetch(`${BASEURL}motors/${_id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json", // Fix the typo here
+        },
+        body: JSON.stringify({
+          name: name,
+          company: company,
+          cost: cost,
+          licence: licence,
+          people: people,
+          location: location,
+        }),
+      });
+      if (response.ok) {
+        console.log(response.ok);
+        setOpenEdit(false);
+      }
+    } catch (error) {
+      console.log("update is wrong", error);
+    }
+  };
 
   return (
     <div>
@@ -87,7 +142,12 @@ export default function Motors() {
           padding: "20px",
         }}
       >
-        <TextField id="outlined-basic" label="Outlined" variant="outlined" />
+        <TextField
+          id="outlined-basic"
+          label="Outlined"
+          variant="outlined"
+          onChange={(e) => handleSearch(e.target.value)}
+        />
         <Button
           variant="contained"
           color="success"
@@ -144,7 +204,7 @@ export default function Motors() {
                 placeholder="Add licence type"
                 onChange={(e) => setLicence(e.target.value)}
               />
-              {/* <Input
+              <Input
                 color="primary"
                 placeholder="Add number of people"
                 onChange={(e) => setPeople(e.target.value)}
@@ -153,14 +213,14 @@ export default function Motors() {
                 color="primary"
                 placeholder="Add location"
                 onChange={(e) => setLocation(e.target.value)}
-              /> */}
+              />
             </Typography>
             <Stack
               direction="row"
               spacing={1}
               sx={{ display: "flex", justifyContent: "right" }}
             >
-              <Button variant="solid" color="success" onClick={handleClick}>
+              <Button variant="solid" color="success" onClick={handleAddClick}>
                 Add
               </Button>
               <Button
@@ -178,50 +238,173 @@ export default function Motors() {
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow>
-              <TableCell>Name of the car</TableCell>
-              <TableCell>Brand</TableCell>
-              <TableCell>Cost</TableCell>
-              <TableCell>Licence</TableCell>
-              <TableCell>People</TableCell>
-              <TableCell>Location</TableCell>
-              <TableCell>Tools</TableCell>
+              <TableCell style={{ backgroundColor: "#EDFF86" }}>
+                Name of the car
+              </TableCell>
+              <TableCell style={{ backgroundColor: "#EDFF86" }}>
+                Brand
+              </TableCell>
+              <TableCell style={{ backgroundColor: "#EDFF86" }}>Cost</TableCell>
+              <TableCell style={{ backgroundColor: "#EDFF86" }}>
+                Licence
+              </TableCell>
+              <TableCell style={{ backgroundColor: "#EDFF86" }}>
+                People
+              </TableCell>
+              <TableCell style={{ backgroundColor: "#EDFF86" }}>
+                Location
+              </TableCell>
+              <TableCell style={{ backgroundColor: "#EDFF86" }}>Date</TableCell>
+              <TableCell style={{ backgroundColor: "#EDFF86" }}>
+                Tools
+              </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {allData.map((data) => (
-              <TableRow
-                key={data.name}
-                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-              >
-                <TableCell>{data.name || "Data is not available"}</TableCell>
-                <TableCell>{data.company || "Data is not available"}</TableCell>
-                <TableCell>{data.cost || "Data is not available"}</TableCell>
-                <TableCell>{data.licence || "Data is not available"}</TableCell>
-                <TableCell>{data.people || "Data is not available"}</TableCell>
-                <TableCell>
-                  {data.location || "Data is not available"}
-                </TableCell>
-                <TableCell>
-                  <div style={{ display: "flex", gap: "20px" }}>
-                    <Button
-                      variant="outlined"
-                      color="error"
-                      startIcon={<DeleteIcon />}
-                      onClick={handleDelete}
-                    >
-                      Delete
-                    </Button>
-                    <Button
-                      variant="outlined"
-                      startIcon={<EditIcon />}
-                    
-                    >
-                      Edit
-                    </Button>
-                  </div>
-                </TableCell>
-              </TableRow>
-            ))}
+            {filteredData &&
+              filteredData.map((data) => (
+                <TableRow
+                  key={data.name}
+                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                >
+                  <TableCell>{data.name || "Data is not available"}</TableCell>
+                  <TableCell>
+                    {data.company || "Data is not available"}
+                  </TableCell>
+                  <TableCell>{data.cost || "Data is not available"}</TableCell>
+                  <TableCell>
+                    {data.licence || "Data is not available"}
+                  </TableCell>
+                  <TableCell>
+                    {data.people || "Data is not available"}
+                  </TableCell>
+                  <TableCell>
+                    {data.location || "Data is not available"}
+                  </TableCell>
+                  <TableCell>
+                    {formatDate(data.createdAt || "No Data")}
+                  </TableCell>
+                  <TableCell align="right">
+                    <div style={{ display: "flex", gap: "20px" }}>
+                      <Button
+                        variant="outlined"
+                        color="error"
+                        startIcon={<DeleteIcon />}
+                        onClick={() => {
+                          handleDelete(data._id);
+                        }}
+                      >
+                        Delete
+                      </Button>
+                      <Popup
+                        trigger={
+                          <Button
+                            variant="outlined"
+                            startIcon={<EditIcon />}
+                            onClick={() => {
+                              setEditOpen(true);
+                            }}
+                          >
+                            Edit
+                          </Button>
+                        }
+                        modal
+                        nested
+                      >
+                        {(close) => (
+                          <div className="modal">
+                            <div
+                              style={{
+                                display: "flex",
+                                flexDirection: "column",
+                                justifyContent: "center",
+                                backgroundColor: "#0066CC",
+                                width: "20vw",
+                                height: "50%",
+                              }}
+                            >
+                              <Typography
+                                level="title-lg"
+                                sx={{ textAlign: "center" }}
+                              >
+                                Update Information
+                              </Typography>
+                              <Typography
+                                sx={{ mt: 1, mb: 2 }}
+                                style={{
+                                  display: "flex",
+                                  flexDirection: "column",
+                                  gap: "20px",
+                                  backgroundColor: "#0066CC",
+                                }}
+                              >
+                                <Input
+                                  color="primary"
+                                  placeholder="Name"
+                                  onChange={(e) => setName(e.target.value)}
+                                />
+                                <Input
+                                  color="primary"
+                                  placeholder="Company"
+                                  onChange={(e) => setCompany(e.target.value)}
+                                />
+                                <Input
+                                  color="primary"
+                                  placeholder="Cost"
+                                  onChange={(e) => setCost(e.target.value)}
+                                />
+                                <Input
+                                  color="primary"
+                                  placeholder="Licence"
+                                  onChange={(e) => setLicence(e.target.value)}
+                                />
+                                <Input
+                                  color="primary"
+                                  placeholder="people"
+                                  onChange={(e) => setPeople(e.target.value)}
+                                />
+                                <Input
+                                  color="primary"
+                                  placeholder="Location"
+                                  onChange={(e) => setLocation(e.target.value)}
+                                />
+                              </Typography>
+                              <Stack
+                                direction="row"
+                                spacing={1}
+                                sx={{
+                                  display: "flex",
+                                  justifyContent: "right",
+                                }}
+                              >
+                                <Button
+                                  variant="contained"
+                                  color="success"
+                                  onClick={() => {
+                                    handleUpdateClick(data._id);
+                                  }}
+                                >
+                                  Update
+                                </Button>
+                                <Button
+                                  variant="contained"
+                                  color="error"
+                                  onClick={() => {
+                                    console.log("modal closed ");
+                                    close();
+                                  }}
+                                >
+                                  Cancel
+                                </Button>
+                              </Stack>
+                            </div>
+                          </div>
+                        )}
+                      </Popup>
+                    </div>
+                  </TableCell>
+                </TableRow>
+              ))}
           </TableBody>
         </Table>
       </TableContainer>
