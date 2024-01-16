@@ -68,7 +68,7 @@ export default function Users() {
     const filtered = allData.filter(
       (data) =>
         data.name.toLowerCase().includes(query.toLowerCase()) ||
-        data.company.toLowerCase().includes(query.toLowerCase())
+        data.email.toLowerCase().includes(query.toLowerCase())
     );
     setFilteredData(filtered);
   };
