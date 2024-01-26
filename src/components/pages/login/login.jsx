@@ -1,64 +1,89 @@
-import React from "react";
-import { Button, Checkbox, FormControlLabel } from "@mui/material";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import {useNavigate } from "react-router-dom";
+const BASEURL = "http://localhost:5050/api/v1/"
+
+
 
 const Login = () => {
-  return (
-    <div className="login-container">
-      <h2 className="signTitle">Admin Login</h2>
-      <form>
-        <div className="form-group">
-          <label className="FormLabels">Email:</label>
-          <input
-            placeholder="Email"
-            className="LoginInput"
-            type="text"
-            name="username"
-            // value={formData.username}
-          />
-          {/* <span className="error-message">{formErrors.username}</span> */}
-        </div>
-        <div className="form-group">
-          <label className="FormLabels">Password:</label>
-          <input
-            className="LoginInput"
-            type="password"
-            name="password"
-            // value={formData.password}
-            // onChange={handleInputChange}
-          />
-          {/* <span className="error-message">{formErrors.password}</span> */}
-        </div>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-          }}
-        >
-          <FormControlLabel
-            control={<Checkbox value="allowExtraEmails" color="primary" />}
-            label="Keep me logged in"
-          />
-        </div>
+  const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState(""); // State to manage error messages
 
-        <div className="form-group">
-          <Link to="sideBar">
-            <Button
-              style={{
-                marginTop: 20,
-                width: "100%",
-                height: 50,
-                borderRadius: 10,
+  const handleSubmit = async () => {
+    try {
+      const response = await fetch(`${BASEURL}auth/login`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: email,
+          password: password,
+        }),
+      });
+
+      const data = await response.json();
+      if (response.ok) {
+        navigate("/sideBar");
+      } else {
+        setError("Invalid email or password"); // Set error message on failure
+      }
+    } catch (error) {
+      setError("Your data is not found");
+    }
+  };
+
+  return (
+    <body>
+      <div className="container">
+        <h1>Sign In</h1>
+        <div>
+          <div className="email">
+            <label htmlFor="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              placeholder="Enter Email..."
+              value={email}
+              onChange={(e) => {
+                setEmail(e.target.value);
+                setError(""); // Clear error message when input changes
               }}
-              variant="contained"
-            >
-              SIGN IN
-            </Button>
-          </Link>
+            />
+            <span className="error">{error}</span> {/* Display error message */}
+          </div>
+          <div className="password">
+            <label htmlFor="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              placeholder="Enter Password..."
+              value={password}
+              onChange={(e) => {
+                setPassword(e.target.value);
+                setError(""); // Clear error message when input changes
+              }}
+            />
+            <span className="error">{error}</span> {/* Display error message */}
+          </div>
+          <div className="checkbox">
+            <div className="check">
+              <input type="checkbox" />
+              <label>Keep me logged in</label>
+            </div>
+            <div>
+              <a href="#">Forgot Password?</a>
+            </div>
+          </div>
+          <div>
+            <button className="signin" type="submit" onClick={handleSubmit}>
+              Sign In
+            </button>
+          </div>
         </div>
-      </form>
-    </div>
+      </div>
+    </body>
   );
 };
 

@@ -17,56 +17,92 @@ code {
     monospace;
 }
 
-.FormLabels {
+/* Basic styling for the body */
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Container styling */
+.container {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #f4f4f4;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Header styling */
+h1 {
+  text-align: center;
+  color: #333;
+}
+
+/* Form input styling */
+.email,
+.password {
+  margin-bottom: 20px;
+}
+
+label {
   display: block;
-  margin-bottom: 10px;
-  color: rgba(55, 55, 55, 0.8);
-  font-family: Open Sans;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: normal;
+  margin-bottom: 5px;
+  color: #555;
 }
 
-.LoginInput {
+input {
   width: 100%;
-  height: 50px;
-  border-radius: 10px;
-  background: rgba(55, 55, 55, 0.1);
-  border: none;
   padding: 10px;
-}
-.login-container {
-  width: 450px;
-  height: 414px;
-  flex-shrink: 0;
-  border-radius: 20px;
-  background: #fff;
-  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.1);
-  padding: 40px;
-  margin: auto;
-  margin-top: 10vh;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
 }
 
-.form-group {
-  margin-bottom: 15px;
+/* Error message styling */
+.error {
+  color: #d9534f;
+  font-size: 14px;
+  margin-top: 5px;
+  display: block;
 }
 
-.LoginInput::placeholder {
-  color: rgba(55, 55, 55, 0.6);
-  font-family: Open Sans;
-  font-size: 15px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
+/* Checkbox styling */
+.checkbox {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.signTitle {
-  color: var(--text, #373737);
-  font-family: Open Sans;
-  font-size: 27px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-  margin-bottom: 25px;
+.check {
+  display: flex;
+  align-items: center;
 }
+
+/* Submit button styling */
+.signin {
+  background-color: #428bca;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  width: 100%;
+}
+
+/* Hover effect for the submit button */
+.signin:hover {
+  background-color: #3071a9;
+}
+
+/* Forgot password link styling */
+a {
+  text-decoration: none;
+  color: #428bca;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+

@@ -43,7 +43,7 @@ export default function Users() {
         const response = await fetch(`${BASEURL}auth/getAllUsers`);
         const users = await response.json();
         setAllData(users.data);
-        filteredData(users.data)
+       setFilteredData(users.data)
       } catch (error) {
         console.log("Users  data is wrong:", error);
       }
