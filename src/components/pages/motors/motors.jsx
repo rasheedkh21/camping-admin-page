@@ -15,7 +15,7 @@ import { Input } from "@mui/joy";
 import Snackbar from "@mui/joy/Snackbar";
 import Popup from "reactjs-popup";
 
-const BASEURL = "http://localhost:5050/api/v1/";
+const BASEURL = "https://api-camping.isabek.uz/";
 
 export default function Motors() {
   const [allData, setAllData] = React.useState([]);
