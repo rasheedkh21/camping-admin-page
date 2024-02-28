@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import {useNavigate } from "react-router-dom";
-const BASEURL = "https://api-camping.isabek.uz/"
+const BASEURL = "https://api-camping.isabek.uz/api/v1/"
 
 
 

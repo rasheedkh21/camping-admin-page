@@ -15,7 +15,7 @@ import { Link } from 'react-router-dom';
 
 export default function Sidebar() {
   const [state, setState] = React.useState({
-    left: false,
+    left: true,
   });
 
   const toggleDrawer = (anchor, open) => (event) => {

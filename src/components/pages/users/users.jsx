@@ -28,7 +28,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-const BASEURL = "https://api-camping.isabek.uz/";
+const BASEURL = "https://api-camping.isabek.uz/api/v1/";
 
 export default function Users() {
   const [allData, setAllData] = React.useState([]);
