@@ -43,7 +43,7 @@ export default function Users() {
         const response = await fetch(`${BASEURL}auth/getAllUsers`);
         const users = await response.json();
         setAllData(users.data);
-       setFilteredData(users.data)
+        setFilteredData(users.data);
       } catch (error) {
         console.log("Users  data is wrong:", error);
       }
@@ -62,17 +62,17 @@ export default function Users() {
     setTotalUsers(allData.length);
   }, [allData]);
 
-  //TO SEARCH DATA
-  const handleSearch = (query) => {
-    setSearch(query);
-    const filtered = allData.filter(
-      (data) =>
-        data.name.toLowerCase().includes(query.toLowerCase)) ||
-        data.email.toLowerCase().includes(query.toLowerCase());
-    setFilteredData(filtered);
-  };
-  // const filteredSearch = searchFilter;
-  console.log("filter", filteredData);
+  // //TO SEARCH DATA
+  // const handleSearch = (query) => {
+  //   setSearch(query);
+  //   const filtered = allData.filter(
+  //     (data) =>
+  //       data.name.toLowerCase().includes(query.toLowerCase)) ||
+  //       data.email.toLowerCase().includes(query.toLowerCase());
+  //   setFilteredData(filtered);
+  // };
+  // // const filteredSearch = searchFilter;
+  // console.log("filter", filteredData);
 
   return (
     <div>
@@ -84,31 +84,61 @@ export default function Users() {
           padding: "20px",
         }}
       >
-        <TextField
+        {/* <TextField
           id="outlined-basic"
           label="Outlined"
           variant="outlined"
           onChange={(e) => handleSearch(e.target.value)}
-        />
+        /> */}
       </div>
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 700 }} aria-label="customized table">
           <TableHead>
             <TableRow>
-              <StyledTableCell style={{ background:"linear-gradient(-48.33deg, rgb(0, 55, 94) 1.127%,rgb(55, 95, 238) 64.563%,rgb(94, 129, 255) 100%)", color:"white", font:"10px"}}>Name</StyledTableCell>
-              <StyledTableCell style={{ background:"linear-gradient(-48.33deg, rgb(0, 55, 94) 1.127%,rgb(55, 95, 238) 64.563%,rgb(94, 129, 255) 100%)", color:"white", font:"10px"}}>Email</StyledTableCell>
-            <StyledTableCell style={{ background:"linear-gradient(-48.33deg, rgb(0, 55, 94) 1.127%,rgb(55, 95, 238) 64.563%,rgb(94, 129, 255) 100%)", color:"white", font:"10px"}}>Registred date</StyledTableCell>
+              <StyledTableCell
+                style={{
+                  background:
+                    "linear-gradient(-48.33deg, rgb(0, 55, 94) 1.127%,rgb(55, 95, 238) 64.563%,rgb(94, 129, 255) 100%)",
+                  color: "white",
+                  font: "10px",
+                }}
+              >
+                Name
+              </StyledTableCell>
+              <StyledTableCell
+                style={{
+                  background:
+                    "linear-gradient(-48.33deg, rgb(0, 55, 94) 1.127%,rgb(55, 95, 238) 64.563%,rgb(94, 129, 255) 100%)",
+                  color: "white",
+                  font: "10px",
+                }}
+              >
+                Email
+              </StyledTableCell>
+              <StyledTableCell
+                style={{
+                  background:
+                    "linear-gradient(-48.33deg, rgb(0, 55, 94) 1.127%,rgb(55, 95, 238) 64.563%,rgb(94, 129, 255) 100%)",
+                  color: "white",
+                  font: "10px",
+                }}
+              >
+                Registred date
+              </StyledTableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-          {filteredData &&
+            {filteredData &&
               filteredData.map((data) => (
-              <StyledTableRow key={data.name}>
-                <StyledTableCell>{data.name || "No Data"}</StyledTableCell>
-                <StyledTableCell>{data.email || "No Data"}</StyledTableCell>
-                <StyledTableCell> {formatDate(data.createdAt || "No Data")}</StyledTableCell>
-              </StyledTableRow>
-            ))}
+                <StyledTableRow key={data.name}>
+                  <StyledTableCell>{data.name || "No Data"}</StyledTableCell>
+                  <StyledTableCell>{data.email || "No Data"}</StyledTableCell>
+                  <StyledTableCell>
+                    {" "}
+                    {formatDate(data.createdAt || "No Data")}
+                  </StyledTableCell>
+                </StyledTableRow>
+              ))}
           </TableBody>
         </Table>
       </TableContainer>

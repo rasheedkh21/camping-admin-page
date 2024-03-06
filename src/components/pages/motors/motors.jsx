@@ -78,7 +78,7 @@ export default function Motors() {
         method: "DELETE",
       });
       if (response.ok) {
-        fetchData();
+      // fetchData();  
       }
     } catch (error) {
       console.log("Error deleting motor data", error);
@@ -124,7 +124,7 @@ export default function Motors() {
         }),
       });
       if (response.ok) {
-        setOpenEdit(false);
+        setEditOpen(false);
       }
     } catch (error) {
       console.log("update is wrong", error);

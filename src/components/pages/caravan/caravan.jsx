@@ -125,7 +125,7 @@ export default function Caravan() {
       });
       if (response.ok) {
         console.log(response.ok);
-        setOpenEdit(false);
+        setEditOpen(false);
       }
     } catch (error) {
       console.log("update is wrong", error);

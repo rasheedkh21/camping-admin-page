@@ -125,7 +125,7 @@ export default function Caravan() {
       });
       if (response.ok) {
         console.log(response.ok);
-        setOpenEdit(false);
+        setEditOpen(false);
       }
     } catch (error) {
       console.log("update is wrong", error);
@@ -237,25 +237,85 @@ export default function Caravan() {
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
-          <TableRow>
-              <TableCell style={{   background:"linear-gradient(-48.33deg, rgb(0, 55, 94) 1.127%,rgb(55, 95, 238) 64.563%,rgb(94, 129, 255) 100%)", color:"white", font:"10px" }}>
+            <TableRow>
+              <TableCell
+                style={{
+                  background:
+                    "linear-gradient(-48.33deg, rgb(0, 55, 94) 1.127%,rgb(55, 95, 238) 64.563%,rgb(94, 129, 255) 100%)",
+                  color: "white",
+                  font: "10px",
+                }}
+              >
                 Name of the car
               </TableCell>
-              <TableCell style={{  background:"linear-gradient(-48.33deg, rgb(0, 55, 94) 1.127%,rgb(55, 95, 238) 64.563%,rgb(94, 129, 255) 100%)",color:"white", font:"10px" }}>
+              <TableCell
+                style={{
+                  background:
+                    "linear-gradient(-48.33deg, rgb(0, 55, 94) 1.127%,rgb(55, 95, 238) 64.563%,rgb(94, 129, 255) 100%)",
+                  color: "white",
+                  font: "10px",
+                }}
+              >
                 Brand
               </TableCell>
-              <TableCell style={{  background:"linear-gradient(-48.33deg, rgb(0, 55, 94) 1.127%,rgb(55, 95, 238) 64.563%,rgb(94, 129, 255) 100%)",color:"white", font:"10px" }}>Cost</TableCell>
-              <TableCell style={{   background:"linear-gradient(-48.33deg, rgb(0, 55, 94) 1.127%,rgb(55, 95, 238) 64.563%,rgb(94, 129, 255) 100%)",  color:"white", font:"10px"}}>
+              <TableCell
+                style={{
+                  background:
+                    "linear-gradient(-48.33deg, rgb(0, 55, 94) 1.127%,rgb(55, 95, 238) 64.563%,rgb(94, 129, 255) 100%)",
+                  color: "white",
+                  font: "10px",
+                }}
+              >
+                Cost
+              </TableCell>
+              <TableCell
+                style={{
+                  background:
+                    "linear-gradient(-48.33deg, rgb(0, 55, 94) 1.127%,rgb(55, 95, 238) 64.563%,rgb(94, 129, 255) 100%)",
+                  color: "white",
+                  font: "10px",
+                }}
+              >
                 Licence
               </TableCell>
-              <TableCell style={{   background:"linear-gradient(-48.33deg, rgb(0, 55, 94) 1.127%,rgb(55, 95, 238) 64.563%,rgb(94, 129, 255) 100%)", color:"white", font:"10px" }}>
+              <TableCell
+                style={{
+                  background:
+                    "linear-gradient(-48.33deg, rgb(0, 55, 94) 1.127%,rgb(55, 95, 238) 64.563%,rgb(94, 129, 255) 100%)",
+                  color: "white",
+                  font: "10px",
+                }}
+              >
                 People
               </TableCell>
-              <TableCell style={{  background:"linear-gradient(-48.33deg, rgb(0, 55, 94) 1.127%,rgb(55, 95, 238) 64.563%,rgb(94, 129, 255) 100%)", color:"white", font:"10px" }}>
+              <TableCell
+                style={{
+                  background:
+                    "linear-gradient(-48.33deg, rgb(0, 55, 94) 1.127%,rgb(55, 95, 238) 64.563%,rgb(94, 129, 255) 100%)",
+                  color: "white",
+                  font: "10px",
+                }}
+              >
                 Location
               </TableCell>
-              <TableCell style={{  background:"linear-gradient(-48.33deg, rgb(0, 55, 94) 1.127%,rgb(55, 95, 238) 64.563%,rgb(94, 129, 255) 100%)", color:"white", font:"10px"}}>Date</TableCell>
-              <TableCell style={{  background:"linear-gradient(-48.33deg, rgb(0, 55, 94) 1.127%,rgb(55, 95, 238) 64.563%,rgb(94, 129, 255) 100%)",color:"white", font:"10px" }}>
+              <TableCell
+                style={{
+                  background:
+                    "linear-gradient(-48.33deg, rgb(0, 55, 94) 1.127%,rgb(55, 95, 238) 64.563%,rgb(94, 129, 255) 100%)",
+                  color: "white",
+                  font: "10px",
+                }}
+              >
+                Date
+              </TableCell>
+              <TableCell
+                style={{
+                  background:
+                    "linear-gradient(-48.33deg, rgb(0, 55, 94) 1.127%,rgb(55, 95, 238) 64.563%,rgb(94, 129, 255) 100%)",
+                  color: "white",
+                  font: "10px",
+                }}
+              >
                 Tools
               </TableCell>
             </TableRow>
