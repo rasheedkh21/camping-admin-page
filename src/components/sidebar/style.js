@@ -6,7 +6,9 @@ export const ItemsCont = styled.div`
   justify-content: space-evenly;
   align-items: center;
   width: 100%;
-  height: 80vh;
+  height: fit-content;
+  gap: 20px;
+  margin-top: 20px;
   div {
     width: 200px;
     height: 175px;
