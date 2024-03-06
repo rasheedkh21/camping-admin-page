@@ -20,7 +20,7 @@ const BASEURL = "https://api-camping.isabek.uz/api/v1/";
 export default function Caravan() {
   const [allData, setAllData] = React.useState([]);
   const [open, setOpen] = React.useState(false);
-  const [setEditOpen] = React.useState(false);
+  const [editOpen, setEditOpen] = React.useState(false);
   const [name, setName] = React.useState("");
   const [company, setCompany] = React.useState("");
   const [cost, setCost] = React.useState("");
@@ -238,24 +238,24 @@ export default function Caravan() {
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow>
-              <TableCell style={{ backgroundColor: "#EDFF86" }}>
+              <TableCell style={{   background:"linear-gradient(-48.33deg, rgb(0, 55, 94) 1.127%,rgb(55, 95, 238) 64.563%,rgb(94, 129, 255) 100%)", color:"white", font:"10px" }}>
                 Name of the car
               </TableCell>
-              <TableCell style={{ backgroundColor: "#EDFF86" }}>
+              <TableCell style={{  background:"linear-gradient(-48.33deg, rgb(0, 55, 94) 1.127%,rgb(55, 95, 238) 64.563%,rgb(94, 129, 255) 100%)",color:"white", font:"10px" }}>
                 Brand
               </TableCell>
-              <TableCell style={{ backgroundColor: "#EDFF86" }}>Cost</TableCell>
-              <TableCell style={{ backgroundColor: "#EDFF86" }}>
+              <TableCell style={{  background:"linear-gradient(-48.33deg, rgb(0, 55, 94) 1.127%,rgb(55, 95, 238) 64.563%,rgb(94, 129, 255) 100%)",color:"white", font:"10px" }}>Cost</TableCell>
+              <TableCell style={{   background:"linear-gradient(-48.33deg, rgb(0, 55, 94) 1.127%,rgb(55, 95, 238) 64.563%,rgb(94, 129, 255) 100%)",  color:"white", font:"10px"}}>
                 Licence
               </TableCell>
-              <TableCell style={{ backgroundColor: "#EDFF86" }}>
+              <TableCell style={{   background:"linear-gradient(-48.33deg, rgb(0, 55, 94) 1.127%,rgb(55, 95, 238) 64.563%,rgb(94, 129, 255) 100%)", color:"white", font:"10px" }}>
                 People
               </TableCell>
-              <TableCell style={{ backgroundColor: "#EDFF86" }}>
+              <TableCell style={{  background:"linear-gradient(-48.33deg, rgb(0, 55, 94) 1.127%,rgb(55, 95, 238) 64.563%,rgb(94, 129, 255) 100%)", color:"white", font:"10px" }}>
                 Location
               </TableCell>
-              <TableCell style={{ backgroundColor: "#EDFF86" }}>Date</TableCell>
-              <TableCell style={{ backgroundColor: "#EDFF86" }}>
+              <TableCell style={{  background:"linear-gradient(-48.33deg, rgb(0, 55, 94) 1.127%,rgb(55, 95, 238) 64.563%,rgb(94, 129, 255) 100%)", color:"white", font:"10px"}}>Date</TableCell>
+              <TableCell style={{  background:"linear-gradient(-48.33deg, rgb(0, 55, 94) 1.127%,rgb(55, 95, 238) 64.563%,rgb(94, 129, 255) 100%)",color:"white", font:"10px" }}>
                 Tools
               </TableCell>
             </TableRow>
@@ -383,6 +383,7 @@ export default function Caravan() {
                                   onClick={() => {
                                     handleUpdateClick(data._id);
                                   }}
+                                  
                                 >
                                   Update
                                 </Button>

@@ -67,9 +67,8 @@ export default function Users() {
     setSearch(query);
     const filtered = allData.filter(
       (data) =>
-        data.name.toLowerCase().includes(query.toLowerCase()) ||
-        data.email.toLowerCase().includes(query.toLowerCase())
-    );
+        data.name.toLowerCase().includes(query.toLowerCase)) ||
+        data.email.toLowerCase().includes(query.toLowerCase());
     setFilteredData(filtered);
   };
   // const filteredSearch = searchFilter;
@@ -96,9 +95,9 @@ export default function Users() {
         <Table sx={{ minWidth: 700 }} aria-label="customized table">
           <TableHead>
             <TableRow>
-              <StyledTableCell>Name</StyledTableCell>
-              <StyledTableCell>Email</StyledTableCell>
-              <StyledTableCell>Registred date</StyledTableCell>
+              <StyledTableCell style={{ background:"linear-gradient(-48.33deg, rgb(0, 55, 94) 1.127%,rgb(55, 95, 238) 64.563%,rgb(94, 129, 255) 100%)", color:"white", font:"10px"}}>Name</StyledTableCell>
+              <StyledTableCell style={{ background:"linear-gradient(-48.33deg, rgb(0, 55, 94) 1.127%,rgb(55, 95, 238) 64.563%,rgb(94, 129, 255) 100%)", color:"white", font:"10px"}}>Email</StyledTableCell>
+            <StyledTableCell style={{ background:"linear-gradient(-48.33deg, rgb(0, 55, 94) 1.127%,rgb(55, 95, 238) 64.563%,rgb(94, 129, 255) 100%)", color:"white", font:"10px"}}>Registred date</StyledTableCell>
             </TableRow>
           </TableHead>
           <TableBody>

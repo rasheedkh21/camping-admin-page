@@ -124,7 +124,6 @@ export default function Motors() {
         }),
       });
       if (response.ok) {
-        console.log(response.ok);
         setOpenEdit(false);
       }
     } catch (error) {
@@ -237,25 +236,25 @@ export default function Motors() {
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
-            <TableRow>
-              <TableCell style={{ backgroundColor: "#EDFF86" }}>
+          <TableRow>
+              <TableCell style={{   background:"linear-gradient(-48.33deg, rgb(0, 55, 94) 1.127%,rgb(55, 95, 238) 64.563%,rgb(94, 129, 255) 100%)", color:"white", font:"10px" }}>
                 Name of the car
               </TableCell>
-              <TableCell style={{ backgroundColor: "#EDFF86" }}>
+              <TableCell style={{  background:"linear-gradient(-48.33deg, rgb(0, 55, 94) 1.127%,rgb(55, 95, 238) 64.563%,rgb(94, 129, 255) 100%)",color:"white", font:"10px" }}>
                 Brand
               </TableCell>
-              <TableCell style={{ backgroundColor: "#EDFF86" }}>Cost</TableCell>
-              <TableCell style={{ backgroundColor: "#EDFF86" }}>
+              <TableCell style={{  background:"linear-gradient(-48.33deg, rgb(0, 55, 94) 1.127%,rgb(55, 95, 238) 64.563%,rgb(94, 129, 255) 100%)",color:"white", font:"10px" }}>Cost</TableCell>
+              <TableCell style={{   background:"linear-gradient(-48.33deg, rgb(0, 55, 94) 1.127%,rgb(55, 95, 238) 64.563%,rgb(94, 129, 255) 100%)",  color:"white", font:"10px"}}>
                 Licence
               </TableCell>
-              <TableCell style={{ backgroundColor: "#EDFF86" }}>
+              <TableCell style={{   background:"linear-gradient(-48.33deg, rgb(0, 55, 94) 1.127%,rgb(55, 95, 238) 64.563%,rgb(94, 129, 255) 100%)", color:"white", font:"10px" }}>
                 People
               </TableCell>
-              <TableCell style={{ backgroundColor: "#EDFF86" }}>
+              <TableCell style={{  background:"linear-gradient(-48.33deg, rgb(0, 55, 94) 1.127%,rgb(55, 95, 238) 64.563%,rgb(94, 129, 255) 100%)", color:"white", font:"10px" }}>
                 Location
               </TableCell>
-              <TableCell style={{ backgroundColor: "#EDFF86" }}>Date</TableCell>
-              <TableCell style={{ backgroundColor: "#EDFF86" }}>
+              <TableCell style={{  background:"linear-gradient(-48.33deg, rgb(0, 55, 94) 1.127%,rgb(55, 95, 238) 64.563%,rgb(94, 129, 255) 100%)", color:"white", font:"10px"}}>Date</TableCell>
+              <TableCell style={{  background:"linear-gradient(-48.33deg, rgb(0, 55, 94) 1.127%,rgb(55, 95, 238) 64.563%,rgb(94, 129, 255) 100%)",color:"white", font:"10px" }}>
                 Tools
               </TableCell>
             </TableRow>
