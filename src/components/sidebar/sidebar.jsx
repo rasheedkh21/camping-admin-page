@@ -63,7 +63,6 @@ export default function Sidebar() {
         const response = await fetch(`${BASEURL}auth/getAllUsers`);
         const users = await response.json();
         setAllUsersData(users.data);
-       setUsersFilteredData(users.data)
       } catch (error) {
         console.log("Users  data is wrong:", error);
       }
@@ -75,8 +74,8 @@ export default function Sidebar() {
     setTotalUsers(allUsersData.length);
   }, [allUsersData]);
 
-   //To get ALL Tuning DATA from Server
-   React.useEffect(() => {
+  //To get ALL Tuning DATA from Server
+  React.useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await fetch(`${BASEURL}tuning/getAllTuning`);
@@ -93,25 +92,24 @@ export default function Sidebar() {
     setTotalTuning(allTuningData.length);
   }, [allTuningData]);
 
-    //To get ALL DATA from Server
-    React.useEffect(() => {
-      const fetchData = async () => {
-        try {
-          const response = await fetch(`${BASEURL}usedCar/getAllUsedCar`);
-          const usedCar = await response.json();
-          setAllUsedCarData(usedCar.data);
-        } catch (error) {
-          console.log("Used car data is not found", error);
-        }
-      };
-      fetchData();
-    }, []);
-  
-    React.useEffect(() => {
-      // Calculate total users after data is fetched
-      setTotalUsedCar(allUsedCarData.length);
-    }, [allUsedCarData]);
-  
+  //To get ALL DATA from Server
+  React.useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`${BASEURL}usedCar/getAllUsedCar`);
+        const usedCar = await response.json();
+        setAllUsedCarData(usedCar.data);
+      } catch (error) {
+        console.log("Used car data is not found", error);
+      }
+    };
+    fetchData();
+  }, []);
+
+  React.useEffect(() => {
+    // Calculate total users after data is fetched
+    setTotalUsedCar(allUsedCarData.length);
+  }, [allUsedCarData]);
 
   const [state, setState] = React.useState({
     left: false,
@@ -157,7 +155,7 @@ export default function Sidebar() {
   );
 
   return (
-    <div style={{ display:"flex", flexDirection:"column"}}>
+    <div style={{ display: "flex", flexDirection: "column" }}>
       <div
         style={{
           display: "flex",
@@ -166,12 +164,16 @@ export default function Sidebar() {
           alignItems: "center",
           height: "70px",
           width: "100%",
-          background:"linear-gradient(-48.33deg, rgb(0, 55, 94) 1.127%,rgb(55, 95, 238) 64.563%,rgb(94, 129, 255) 100%)", 
+          background:
+            "linear-gradient(-48.33deg, rgb(0, 55, 94) 1.127%,rgb(55, 95, 238) 64.563%,rgb(94, 129, 255) 100%)",
         }}
       >
         {["left"].map((anchor) => (
           <React.Fragment key={anchor}>
-            <Button style={{background:"#fff", gap:"10px"}} onClick={toggleDrawer(anchor, true)}>
+            <Button
+              style={{ background: "#fff", gap: "10px" }}
+              onClick={toggleDrawer(anchor, true)}
+            >
               <ListRoundedIcon /> Items
             </Button>
             <Drawer
@@ -183,7 +185,7 @@ export default function Sidebar() {
             </Drawer>
           </React.Fragment>
         ))}
-        <h1 style={{color:"#fff"}}>Camper Admin</h1>
+        <h1 style={{ color: "#fff" }}>Camper Admin</h1>
       </div>
       <ItemsCont>
         <div>
